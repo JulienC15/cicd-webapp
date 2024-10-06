@@ -10,14 +10,14 @@ export async function initialize() {
     connection: process.env.MYSQL_URL,
   });
 
-  // Use template literals for SQL commands
-  await knexInstance.raw(`CREATE DATABASE IF NOT EXISTS \`animals\`;`);
-  await knexInstance.raw(`CREATE TABLE IF NOT EXISTS \`animals\` 
-  (
-    \`id\` INT NOT NULL, 
-    \`name\` VARCHAR(255) NOT NULL, 
-    PRIMARY KEY (\`id\`)
-  );`);
+  // Use single quotes for strings
+  await knexInstance.raw('CREATE DATABASE IF NOT EXISTS `animals`;');
+  await knexInstance.raw('CREATE TABLE IF NOT EXISTS `animals` \
+  ( \
+    `id` INT NOT NULL, \
+    `name` VARCHAR(255) NOT NULL, \
+    PRIMARY KEY (`id`) \
+  );');
 
   const [animalCount] = await knexInstance('animals').count();
 
