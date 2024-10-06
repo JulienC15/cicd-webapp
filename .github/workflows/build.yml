@@ -1,9 +1,9 @@
----
 name: Build and test
 on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,3 +21,11 @@ jobs:
 
       - name: Lint code
         run: yarn lint .
+
+      - name: Build Docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Dockerfile
+          tags: your-docker-hub-username/webapp:latest
+          push: false # Don't push the image to Docker Hub yet
