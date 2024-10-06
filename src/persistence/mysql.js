@@ -9,8 +9,10 @@ export async function initialize() {
     client: 'mysql2',
     connection: process.env.MYSQL_URL,
   });
-  await knexInstance.raw('CREATE DATABASE IF NOT EXISTS `animals\`;');
-  await knexInstance.raw(`CREATE TABLE IF NOT EXISTS `animals\`
+
+  // Use template literals for SQL commands
+  await knexInstance.raw(`CREATE DATABASE IF NOT EXISTS \`animals\`;`);
+  await knexInstance.raw(`CREATE TABLE IF NOT EXISTS \`animals\` 
   (
     \`id\` INT NOT NULL, 
     \`name\` VARCHAR(255) NOT NULL, 
