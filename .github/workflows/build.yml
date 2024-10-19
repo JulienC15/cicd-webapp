@@ -19,6 +19,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      - name: Set ESLint config environment variable
+        run: echo "ESLINT_USE_FLAT_CONFIG=false" >> $GITHUB_ENV
+
       - name: Lint code
         run: yarn lint .
 
@@ -28,4 +31,4 @@ jobs:
           context: .
           file: Dockerfile
           tags: your-docker-hub-username/webapp:latest
-          push: false # Don't push the image to Docker Hub yet
+          push: false  # Don't push the image to Docker Hub yet
